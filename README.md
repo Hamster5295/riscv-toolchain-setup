@@ -1,12 +1,14 @@
 # Setup [riscv-gnu-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain) in your GitHub Actions
 
+> This project is forked from imkiva/setup-riscv-gnu-toolchain and fixed .tar.xz issue
+
 ## Use this Action
 
 The following code snippet installs the nightly version of GNU Toolchain and adds it to the PATH:
 
 ```yaml
 - name: Setup RISCV GNU Toolchain
-  uses: imkiva/setup-riscv-gnu-toolchain@latest
+  uses: Hamster5295/riscv-toolchain-setup
   with:
     version: 'latest' # or tag name
     arch: riscv64     # or riscv32
