@@ -20,7 +20,7 @@ async function run(): Promise<void> {
     core.info("os:       " + os);
 
     // TODO: support parsing `latest` version to tag name
-    let url = `https://github.com/riscv-collab/riscv-gnu-toolchain/releases/downloads/${version}/${arch}-${libc}-${os}-${compiler}.tar.xz`
+    let url = `https://github.com/riscv-collab/riscv-gnu-toolchain/release/downloads/${version}/${arch}-${libc}-${os}-${compiler}.tar.xz`
     core.info("Downloading from " + url)
 
     const toolchainHome = await install(url);
