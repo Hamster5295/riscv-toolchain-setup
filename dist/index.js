@@ -59,7 +59,7 @@ function run() {
             core.info("compiler: " + compiler);
             core.info("os:       " + os);
             // TODO: support parsing `latest` version to tag name
-            let url = `https://github.com/riscv-collab/riscv-gnu-toolchain/releases/download/${version}/${arch}-${libc}-${os}-${compiler}-nightly-${version}-nightly.tar.xz`;
+            let url = `https://github.com/riscv-collab/riscv-gnu-toolchain/releases/${version}/${arch}-${libc}-${os}-${compiler}.tar.xz`;
             core.info("Downloading from " + url);
             const toolchainHome = yield install(url);
             core.info("Nice to meet you! This is");
