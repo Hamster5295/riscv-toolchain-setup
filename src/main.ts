@@ -46,6 +46,7 @@ async function install(url: string): Promise<string> {
     const toolchainHome = await tool.extractTar(file, "riscv-toolchain", "-xJ");
 
     core.addPath(path.join(toolchainHome, "riscv", "bin"));
+    await exec.exec("echo", ["$PATH"])
     core.exportVariable("RISCV_HOME", path.join(toolchainHome, "riscv"));
     core.exportVariable("RISCV_SYSROOT", path.join(toolchainHome, "riscv", "sysroot"));
     return toolchainHome;

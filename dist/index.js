@@ -83,6 +83,7 @@ function install(url) {
         core.info("Downloaded to " + file);
         const toolchainHome = yield tool.extractTar(file, "riscv-toolchain", "-xJ");
         core.addPath(path.join(toolchainHome, "riscv", "bin"));
+        yield exec.exec("echo", ["$PATH"]);
         core.exportVariable("RISCV_HOME", path.join(toolchainHome, "riscv"));
         core.exportVariable("RISCV_SYSROOT", path.join(toolchainHome, "riscv", "sysroot"));
         return toolchainHome;
