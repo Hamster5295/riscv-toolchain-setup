@@ -25,7 +25,8 @@ async function run(): Promise<void> {
 
         const toolchainHome = await install(url);
         core.info("Nice to meet you! This is");
-        await exec.exec(path.join(toolchainHome, "riscv", "bin", `${arch}-unknown-${libc}-gcc`), ["--version"]);
+        // await exec.exec(path.join(toolchainHome, "riscv", "bin", `${arch}-unknown-${libc}-gcc`), ["--version"]);
+        await exec.exec(`${arch}-unknown-${libc}-gcc`, ["--version"]);
 
     } catch (error) {
         if (error instanceof Error) core.setFailed(error.message);
@@ -46,7 +47,7 @@ async function install(url: string): Promise<string> {
     const toolchainHome = await tool.extractTar(file, "riscv-toolchain", "-xJ");
 
     core.addPath(path.join(toolchainHome, "riscv", "bin"));
-    await exec.exec("echo", ["$PATH"])
+    await exec.exec("ls", [path.join(toolchainHome, "riscv", "bin")])
     core.exportVariable("RISCV_HOME", path.join(toolchainHome, "riscv"));
     core.exportVariable("RISCV_SYSROOT", path.join(toolchainHome, "riscv", "sysroot"));
     return toolchainHome;
