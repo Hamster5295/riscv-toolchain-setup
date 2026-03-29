@@ -63,7 +63,7 @@ function run() {
             core.info("Downloading from " + url);
             const toolchainHome = yield install(url);
             core.info("Nice to meet you! This is");
-            yield exec.exec(path.join(toolchainHome, "riscv", "bin", "riscv64-unknown-linux-gnu-gcc"), ["--version"]);
+            yield exec.exec(path.join(toolchainHome, "riscv", "bin", `${arch}-unknown-${libc}-gcc`), ["--version"]);
         }
         catch (error) {
             if (error instanceof Error)
@@ -82,8 +82,6 @@ function install(url) {
         const file = yield tool.downloadTool(url);
         core.info("Downloaded to " + file);
         const toolchainHome = yield tool.extractTar(file, "riscv-toolchain", "-xJ");
-        yield exec.exec("pwd");
-        yield exec.exec("ls", [path.join(toolchainHome, "riscv", "bin")]);
         core.addPath(path.join(toolchainHome, "riscv", "bin"));
         core.exportVariable("RISCV_HOME", path.join(toolchainHome, "riscv"));
         core.exportVariable("RISCV_SYSROOT", path.join(toolchainHome, "riscv", "sysroot"));
